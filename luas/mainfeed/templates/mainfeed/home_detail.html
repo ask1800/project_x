@@ -1,0 +1,11 @@
+{% extends 'mainfeed/base.html' %}
+
+{% block content %}
+
+
+<meta http-equiv="REFRESH" content="0;url={{ headline.url }}">
+   
+    <p>{{ hits }}</p>
+    <p>opening <u style="color: blue;">{{ headline.url }}</u></p>
+
+{% endblock %}

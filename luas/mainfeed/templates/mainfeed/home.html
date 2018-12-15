@@ -1,0 +1,15 @@
+{% extends 'mainfeed/base.html' %}
+
+{% block content %}
+
+<body>
+    {% for headline in headlines %}
+    <ol>
+        <a target="_blank" href="{% url 'detail' headline.slug %}">{{headline.title}}</a>
+        <p>{{headline.source}}, {{ headline.hit }}</p>
+    </ol>
+    {% endfor %}
+</body>
+
+{% endblock %}
+
