@@ -19,13 +19,16 @@ def scrape(request):
                 temp = article[i].a.text
                 title = temp.split('\n')
 
-                #save it to database
-                new_headline = Headline()
-                new_headline.title = title[1]
-                new_headline.read = title[2]
-                new_headline.url = article[i].a['href']
-                new_headline.source = "Kompas"
-                new_headline.save()
+                if Headline.objects.filter(title=title[1]).exists():
+                        break
+                else:
+                        #save it to database
+                        new_headline = Headline()
+                        new_headline.title = title[1]
+                        new_headline.read = title[2]
+                        new_headline.url = article[i].a['href']
+                        new_headline.source = "Kompas"
+                        new_headline.save()
 
         #detiknews.com rss trending
         source = requests.get('http://rss.detik.com/index.php/detikcom_nasional').text
@@ -38,11 +41,14 @@ def scrape(request):
                 title = article[i].title.text
                 link = article[i].link.text
                 
-                new_headline = Headline()
-                new_headline.title = title
-                new_headline.url = link
-                new_headline.source = "Detik"
-                new_headline.save()
+                if Headline.objects.filter(title=title).exists():
+                        break
+                else:
+                        new_headline = Headline()
+                        new_headline.title = title
+                        new_headline.url = link
+                        new_headline.source = "Detik"
+                        new_headline.save()
 
         return redirect('/')
         
