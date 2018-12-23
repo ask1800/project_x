@@ -5,7 +5,7 @@ import requests
 from .models import Headline
 
 
-
+#test comment
 def scrape(request):
         #kompas.com trending news web scrapper
         source = requests.get('https://www.kompas.com').text
