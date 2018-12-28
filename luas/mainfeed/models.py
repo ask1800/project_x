@@ -8,6 +8,7 @@ class Headline(models.Model):
     source = models.CharField(max_length=80)
     slug = models.SlugField(max_length=200)
     hit = models.IntegerField(default=0)
+    genre = models.CharField(max_length=80, blank=True)
 
     class Meta:
         ordering = ['-hit']

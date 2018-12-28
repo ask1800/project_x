@@ -7,8 +7,8 @@ from .models import Headline
 
 #test comment
 def scrape(request):
-        #kompas.com trending news web scrapper
-        source = requests.get('https://www.kompas.com').text
+        #news.kompas.com trending news web scrapper
+        source = requests.get('https://news.kompas.com').text
 
         soup = BeautifulSoup(source, 'lxml')
 
@@ -28,9 +28,10 @@ def scrape(request):
                         new_headline.read = title[2]
                         new_headline.url = article[i].a['href']
                         new_headline.source = "Kompas"
+                        new_headline.genre = "News"
                         new_headline.save()
 
-        #detiknews.com rss trending
+        #DetikNews rss
         source = requests.get('http://rss.detik.com/index.php/detikcom_nasional').text
 
         soup = BeautifulSoup(source, 'xml')
@@ -47,7 +48,51 @@ def scrape(request):
                         new_headline = Headline()
                         new_headline.title = title
                         new_headline.url = link
-                        new_headline.source = "Detik"
+                        new_headline.source = "DetikNews"
+                        new_headline.genre = "News"
+                        new_headline.save()
+
+        #DetikFinance rss, url not fixed yet
+        source = requests.get('http://rss.detik.com/index.php/finance').text
+
+        soup = BeautifulSoup(source, 'xml')
+
+        article = soup.find_all('item')
+
+        for i in range(len(article)):
+                title = article[i].title.text
+                link = article[i].link.text
+                
+                if Headline.objects.filter(title=title).exists():
+                        break
+                else:
+                        new_headline = Headline()
+                        new_headline.title = title
+                        new_headline.url = link
+                        new_headline.source = "DetikFinance"
+                        new_headline.genre = "Finance"
+                        new_headline.save()
+
+        #liputan6 News trending scraper
+        source = requests.get('https://www.liputan6.com/news/indeks/terpopuler').text
+
+        soup = BeautifulSoup(source, 'lxml')
+
+        trending = soup.find('div', class_='articles--list articles--list_rows')
+        article = trending.find_all('article', class_='articles--rows--item')
+
+        for i in range(10):
+                temp = article[i].a
+
+                if Headline.objects.filter(title=temp['title']).exists():
+                        break
+                else:
+                        #save it to database
+                        new_headline = Headline()
+                        new_headline.title = temp['title']
+                        new_headline.url = temp['href']
+                        new_headline.source = "Liputan6"
+                        new_headline.genre = "News"
                         new_headline.save()
 
         return redirect('/')
