@@ -1,0 +1,24 @@
+#top-filter {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 8px;
+    overflow: hidden;
+    background-color: white;
+    border-bottom: 1px solid #555;
+}
+
+#top-filter li {
+    float: left;
+}
+
+#top-filter li a {
+    color:  #707070;
+    text-align: center;
+    padding: 7px 8px;
+    text-decoration: none;   
+}
+
+#top-filter li a:hover {
+    color: black;
+}

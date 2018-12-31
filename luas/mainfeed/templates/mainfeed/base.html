@@ -6,11 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Luas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mainfeed/main.css' %}">
     <script src="main.js"></script>
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
-    {% block content %}
-    {% endblock content %}
+    <!-- side-navbar -->
+    <ul id="side-navbar">
+        <li><a href="{% url 'home-feed' %}">All</a></li>
+        <li><a href="{% url 'news-feed' %}">News</a></li>
+        <li><a href="{% url 'finance-feed' %}">Finance</a></li>
+    </ul>
+    <!-- top-navbar -->
+    <ul id="top-navbar">
+        <li><a href="{% url 'home-feed' %}">Luas</a></li>
+    </ul>
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    
 </body>
 </html>

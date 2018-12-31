@@ -119,23 +119,24 @@ def scrape(request):
 
         return redirect('/')
         
-class ObjectFeeds(ListView):
+class HomeFeed(ListView):
 	model = Headline
 	context_object_name = 'headlines'
 	template_name = 'mainfeed/home.html'
-	
-
-# class HeadlineDetailView(DetailView):
-#         model = Headline
-#         context_object_name = 'headline'
-#         template_name = 'mainfeed/home_detail.html'
-        
-#         def get_context_data(self, slug, **kwargs):
-#                 data = super(HeadlineDetailView, self).get_context_data(**kwargs)
-#                 return data
 
 def headline_detail(request, slug):
         headline = get_object_or_404(Headline, slug=slug)
         headline.hit += 1
         headline.save()
         return render(request, 'mainfeed/home_detail.html', context={'headline' : headline})
+
+#Object filtering not yet fixed (currently in templates)
+class NewsFeed(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/news.html'
+
+class FinanceFeed(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/finance.html'
