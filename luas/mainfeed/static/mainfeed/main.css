@@ -1,6 +1,8 @@
+/* current fonts: Montserrat, Poppins */
+
 body {
   margin: 0;
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
 }
 
 div {
@@ -14,9 +16,10 @@ div {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  margin-top: 1em;
   padding-top: 3.5em;
   width: 25%;
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -44,10 +47,12 @@ div {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: white;
   position: fixed;
   top: 0;
   width: 100%;
+  border-bottom-color: #f2f2f2;
+  border-bottom-style: inset;
 }
 
 #top-navbar li {
@@ -56,8 +61,11 @@ div {
 
 #top-navbar li a {
   display: block;
-  color: white;
+  color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 12px 14px;
   text-decoration: none;
+  margin-left: 68px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
 }
