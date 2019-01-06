@@ -55,7 +55,7 @@ ROOT_URLCONF = 'luas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/luas/mainfeed/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
