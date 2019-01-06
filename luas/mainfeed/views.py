@@ -95,48 +95,69 @@ def scrape(request):
                         new_headline.genre = "News"
                         new_headline.save()
 
-        #tempo News popular scraper
-        source = requests.get('https://nasional.tempo.co').text
+        # #tempo News popular scraper
+        # source = requests.get('https://nasional.tempo.co').text
 
-        soup = BeautifulSoup(source, 'lxml')
+        # soup = BeautifulSoup(source, 'lxml')
 
-        trending = soup.find('div', class_='tab-content-slide selected')
-        article = trending.find_all('div', class_='wrapper clearfix')
+        # trending = soup.find('div', class_='tab-content-slide selected')
+        # article = trending.find_all('div', class_='wrapper clearfix')
 
-        for i in range(len(article)):
-                temp = article[i]
+        # for i in range(len(article)):
+        #         temp = article[i]
 
-                if Headline.objects.filter(title=title[1]).exists():
-                        break
-                else:
-                        #save it to database
-                        new_headline = Headline()
-                        new_headline.title = temp.h2.text
-                        new_headline.url = temp.a['href']
-                        new_headline.source = "Tempo"
-                        new_headline.genre = "News"
-                        new_headline.save()
+        #         if Headline.objects.filter(title=title[1]).exists():
+        #                 break
+        #         else:
+        #                 #save it to database
+        #                 new_headline = Headline()
+        #                 new_headline.title = temp.h2.text
+        #                 new_headline.url = temp.a['href']
+        #                 new_headline.source = "Tempo"
+        #                 new_headline.genre = "News"
+        #                 new_headline.save()
 
         return redirect('/')
         
-class HomeFeed(ListView):
-	model = Headline
-	context_object_name = 'headlines'
-	template_name = 'mainfeed/home.html'
+class AllFeedPopular(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/home.html'
+        ordering = ['-hit']
+
+class AllFeedLatest(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/home.html'
+        ordering = ['-created_at']
+
+#Object filtering not yet fixed (currently in templates)
+class NewsFeedPopular(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/news.html'
+        ordering = ['-hit']
+
+class NewsFeedLatest(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/home.html'
+        ordering = ['-created_at']
+
+class FinanceFeedPopular(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/finance.html'
+        ordering = ['-hit']
+
+class FinanceFeedLatest(ListView):
+        model = Headline
+        context_object_name = 'headlines'
+        template_name = 'mainfeed/finance.html'
+        ordering = ['-created_at']
 
 def headline_detail(request, slug):
         headline = get_object_or_404(Headline, slug=slug)
         headline.hit += 1
         headline.save()
         return render(request, 'mainfeed/home_detail.html', context={'headline' : headline})
-
-#Object filtering not yet fixed (currently in templates)
-class NewsFeed(ListView):
-        model = Headline
-        context_object_name = 'headlines'
-        template_name = 'mainfeed/news.html'
-
-class FinanceFeed(ListView):
-        model = Headline
-        context_object_name = 'headlines'
-        template_name = 'mainfeed/finance.html'

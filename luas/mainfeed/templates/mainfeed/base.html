@@ -15,13 +15,13 @@
 <body>
     <!-- side-navbar -->
     <ul id="side-navbar">
-        <li><a href="{% url 'home-feed' %}">All</a></li>
-        <li><a href="{% url 'news-feed' %}">News</a></li>
-        <li><a href="{% url 'finance-feed' %}">Finance</a></li>
+        <li><a href="{% url 'all-feed-popular' %}">All</a></li>
+        <li><a href="{% url 'news-feed-popular' %}">News</a></li>
+        <li><a href="{% url 'finance-feed-popular' %}">Finance</a></li>
     </ul>
     <!-- top-navbar -->
     <ul id="top-navbar">
-        <li><a href="{% url 'home-feed' %}">Luas</a></li>
+        <li><a href="{% url 'all-feed-popular' %}">Luas</a></li>
     </ul>
     <div>
         {% block content %}

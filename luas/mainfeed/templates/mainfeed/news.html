@@ -10,8 +10,8 @@
 
 <body>
     <ul id="top-filter">
-            <li><a href="#">Popular</a></li>
-            <li><a href="#">Latest</a></li>
+            <li><a href="{% url 'news-feed-popular' %}">Popular</a></li>
+            <li><a href="{% url 'news-feed-latest' %}">Latest</a></li>
             <li><a href="#">Most Commented</a></li>
     </ul>
     {% for headline in headlines %}

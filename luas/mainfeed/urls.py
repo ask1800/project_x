@@ -3,11 +3,14 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.HomeFeed.as_view(), name='home-feed'),
+    path('', views.AllFeedPopular.as_view(), name='all-feed-popular'),
+    path('latest/', views.AllFeedLatest.as_view(), name='all-feed-latest'),
+    path('news', views.NewsFeedPopular.as_view(), name='news-feed-popular'),
+    path('news/latest', views.NewsFeedLatest.as_view(), name='news-feed-latest'),
+    path('finance', views.FinanceFeedPopular.as_view(), name='finance-feed-popular'),
+    path('finance/latest', views.FinanceFeedLatest.as_view(), name='finance-feed-latest'),
     path('scrape/', views.scrape, name='scrape'),
     path('<slug:slug>/', views.headline_detail, name="detail"),
-    path('news', views.NewsFeed.as_view(), name='news-feed'),
-    path('finance', views.FinanceFeed.as_view(), name='finance-feed'),
 ]
 
  

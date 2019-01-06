@@ -1,17 +1,15 @@
 from django.db import models
 from uuslug import uuslug
+from django.utils import timezone
 
 class Headline(models.Model):
     title = models.CharField(max_length=130)
     url = models.URLField()
-    read = models.CharField(max_length=80, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
     source = models.CharField(max_length=80)
     slug = models.SlugField(max_length=200)
     hit = models.IntegerField(default=0)
     genre = models.CharField(max_length=80, blank=True)
-
-    class Meta:
-        ordering = ['-hit']
 
     def __unicode__(self):
         return self.title
