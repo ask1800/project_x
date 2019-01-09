@@ -9,7 +9,7 @@ urlpatterns = [
     path('news/latest', views.NewsFeedLatest.as_view(), name='news-feed-latest'),
     path('finance', views.FinanceFeedPopular.as_view(), name='finance-feed-popular'),
     path('finance/latest', views.FinanceFeedLatest.as_view(), name='finance-feed-latest'),
-    path('scrape/', views.scrape, name='scrape'),
+    path('scrape/', views.startup, name='scrape'),
     path('<slug:slug>/', views.headline_detail, name="detail"),
 ]
 
