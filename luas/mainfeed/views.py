@@ -14,11 +14,10 @@ def startup(request):
                 raise Http404
         else:
                 scrape()
-                schedule.every(1).minutes.do(scrape)
-    
-                while 1:
-                        schedule.run_pending()
-                        time.sleep(1)
+                
+        return redirect('/')
+        
+         
 
         
 class AllFeedPopular(ListView):

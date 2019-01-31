@@ -113,5 +113,3 @@ def scrape():
     #                 new_headline.source = "Tempo"
     #                 new_headline.genre = "News"
     #                 new_headline.save()
-
-    return redirect('/')
