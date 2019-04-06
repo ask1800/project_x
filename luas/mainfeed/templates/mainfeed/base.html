@@ -7,12 +7,12 @@
     <title>Luas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'mainfeed/main.css' %}">
-    <script src="main.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Source+Sans+Pro" rel="stylesheet">
     {% block styles %}
     {% endblock %}
 </head>
 <body>
+    <div class="main-body">
     <!-- side-navbar -->
     <ul id="side-navbar">
         <li><a href="{% url 'all-feed-popular' %}">All</a></li>
@@ -23,10 +23,10 @@
     <ul id="top-navbar">
         <li><a href="{% url 'all-feed-popular' %}">Luas</a></li>
     </ul>
-    <div>
+    <div class="content">
         {% block content %}
         {% endblock content %}
     </div>
-    
+    </div>
 </body>
 </html>

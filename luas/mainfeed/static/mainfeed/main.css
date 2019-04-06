@@ -23,8 +23,8 @@ body p {
   color: #707070; 
 }
 
-div {
-  background-color: white;
+.content {
+  /* background-color: white; */
   margin-left: 25%;
   padding: 3.5em 16px;
   margin-right: 25%;

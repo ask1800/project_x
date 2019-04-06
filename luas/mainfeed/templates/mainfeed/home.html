@@ -1,5 +1,6 @@
 {% extends 'mainfeed/base.html' %}
 {% load staticfiles %}
+{% load static %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'mainfeed/home.css' %}">
@@ -12,11 +13,15 @@
         <li><a href="{% url 'all-feed-latest' %}">Latest</a></li>
         <li><a href="#">Most Commented</a></li>
     </ul>
+
     {% for headline in headlines %}
-    <ol>
-        <a target="_blank" href="{% url 'detail' headline.slug %}">{{headline.title}}</a>
-        <p>{{headline.source}}, {{ headline.hit }}</p>
-    </ol>
+    <ul>
+        <li id="borders">
+            <img src="media/comment.png"> </img>
+            <a target="_blank" href="{% url 'detail' headline.slug %}">{{headline.title}}</a>
+            <p>{{headline.source}}, {{ headline.hit }}</p>
+    </li>
+    </ul>
     {% endfor %}
 </body>
 {% endblock %}
